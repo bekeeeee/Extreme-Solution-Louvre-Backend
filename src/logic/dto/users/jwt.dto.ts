@@ -24,7 +24,6 @@ export class Jwt {
   }
 
   static async signToken(jwtDto: Jwt) {
-    console.log('jwtDto====', jwtDto)
     return await jwt.sign({ ...jwtDto }, process.env.JWT_SECRET!, {
       expiresIn: process.env.JWT_EXPIRES_IN,
     })

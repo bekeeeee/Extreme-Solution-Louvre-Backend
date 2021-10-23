@@ -1,4 +1,4 @@
-import { Jwt } from "@logic/dto/users";
+import { Jwt, SigninDto } from "@logic/dto/users";
 import { CreateUserDto } from "@logic/dto/users/create-user.dto";
 import { UsersService } from "@logic/services/users.service";
 import { BaseHttpResponse } from "@web/lib/base-http-response";
@@ -13,7 +13,6 @@ export class UsersController {
 
   @httpPost("/", ValidateRequestMiddleware.with(CreateUserDto))
   async signup(req: Request, res: Response) {
-    console.log("CreateUserDto", req.body);
     await this._service.findOneByEmailSignUp({ email: req.body.email });
     await this._service.findOneByUsernameSignup({
       username: req.body.username,
@@ -28,5 +27,18 @@ export class UsersController {
     user.password = "";
     const response = BaseHttpResponse.success(user);
     res.json(response);
+  }
+
+
+
+  @httpPost('/login', ValidateRequestMiddleware.with(SigninDto))
+  async lgoin(req: Request, res: Response) {
+    const user = await this._service.findOne(req.body)
+
+    const jwt = await Jwt.signToken(Jwt.from(user))
+    req.session! = { jwt }
+    user.password = ''
+    const response = BaseHttpResponse.success(user)
+    res.json(response)
   }
 }

@@ -4,6 +4,7 @@ import {
   GetOneUserByEmailDto,
   GetOneUserByPhoneNumberDto,
   GetOneUserByUsernameDto,
+  SigninDto,
   UserDto,
 } from "@logic/dto/users";
 import { BadRequestError } from "@logic/exceptions";
@@ -47,6 +48,17 @@ export class UsersService {
     if (foundUser) {
       throw new BadRequestError("phoneNumber is used");
     }
+  }
+
+  async findOne(signinDto: SigninDto) {
+    const user = await this._usersRepo.findOne(
+      signinDto.username,
+      signinDto.password
+    )
+    if (!user) {
+      throw new BadRequestError('Invalid credentials')
+    }
+    return UserDto.from(user)
   }
 
   async create(createUserDto: CreateUserDto) {

@@ -50,7 +50,6 @@ userSchema.statics.correctPassword = async function (
   candidatePassword,
   userPassword
 ) {
-  console.log("correctPassword");
   return await bcrypt.compare(candidatePassword, userPassword);
 };
 userSchema.pre("save", async function (next) {
