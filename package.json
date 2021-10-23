@@ -1,0 +1,27 @@
+{
+  "name": "louvre-backend-ts",
+  "version": "1.0.0",
+  "main": "bootstrap.ts",
+  "author": "Mohamed Ragab",
+  "scripts": {
+    "dev": "ts-node-dev --respawn --transpile-only --no-notify -r tsconfig-paths/register src/bootstrap.ts"
+  },
+  "license": "MIT",
+  "devDependencies": {
+    "@types/express": "^4.17.11",
+    "dotenv": "^8.2.0",
+    "ts-node-dev": "^1.1.6",
+    "tsconfig-paths": "^3.9.0",
+    "typescript": "^4.2.2"
+  },
+  "dependencies": {
+    "@types/bcryptjs": "^2.4.2",
+    "bcryptjs": "^2.4.3",
+    "express": "^4.17.1",
+    "inversify": "^5.1.1",
+    "inversify-express-utils": "^6.3.2",
+    "mongoose": "^5.12.8",
+    "morgan": "^1.10.0",
+    "reflect-metadata": "^0.1.13"
+  }
+}
