@@ -19,20 +19,20 @@ export class UsersRepository {
     return this._dbContext.user.findOne({ phoneNumber });
   }
 
-  async findOne(username: IUser['username'], password: IUser['password']) {
+  async findOne(username: IUser["username"], password: IUser["password"]) {
     const user = await this._dbContext.user
       .findOne({ username })
-      .select('+password')
+      .select("+password");
 
-    if (!user) return null
+    if (!user) return null;
 
     if (
       !(await this._dbContext.user.correctPassword(password, user?.password!))
     )
-      return null
-    else return user
+      return null;
+    else return user;
   }
-  
+
   async create(entity: Partial<IUser>) {
     return this._dbContext.user.create(entity);
   }

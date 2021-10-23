@@ -54,15 +54,20 @@ export class UsersService {
     const user = await this._usersRepo.findOne(
       signinDto.username,
       signinDto.password
-    )
+    );
     if (!user) {
-      throw new BadRequestError('Invalid credentials')
+      throw new BadRequestError("Invalid credentials");
     }
-    return UserDto.from(user)
+    return UserDto.from(user);
   }
 
   async create(createUserDto: CreateUserDto) {
     const createdUser = await this._usersRepo.create(createUserDto);
     return UserDto.from(createdUser);
+  }
+
+  async all() {
+    const users = await this._usersRepo.all();
+    return UserDto.fromMany(users);
   }
 }

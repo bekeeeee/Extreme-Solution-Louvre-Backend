@@ -204,6 +204,40 @@ describe("Users Controller", () => {
       })
       .expect(400);
   });
+
+  // get all users tests
+  it("Not authenticated, get all users", async () => {
+    return request.get("/api/v1/user").expect(401);
+  });
+
+  it("Not authorized, get all users", async () => {
+    request
+      .post("/api/v1/user")
+      .send({
+        email: "test@test.com",
+        username: "test1",
+        password: "password",
+        role: "user1",
+        phoneNumber: "12345678",
+      })
+      .expect(201);
+    return request.get("/api/v1/user").expect(401);
+  });
+
+  it("return 201, get all users", async () => {
+    request
+      .post("/api/v1/user")
+      .send({
+        email: "test@test.com",
+        username: "test1",
+        password: "password",
+        role: "admin",
+        phoneNumber: "12345678",
+      })
+      .expect(201);
+    return request.get("/api/v1/user").expect(401);
+  });
+
   afterEach(async (done) => {
     // await artsModel.deleteMany()
     done();
