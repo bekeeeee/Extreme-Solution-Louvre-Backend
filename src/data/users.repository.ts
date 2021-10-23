@@ -1,5 +1,6 @@
 import { injectable } from "inversify";
 import { DBContext } from "@data/db.context";
+import { IUser } from "./user.model";
 
 @injectable()
 export class UsersRepository {
@@ -7,5 +8,17 @@ export class UsersRepository {
 
   async all() {
     return this._dbContext.user.find({});
+  }
+  async findOneByEmail(email: IUser["email"]) {
+    return this._dbContext.user.findOne({ email });
+  }
+  async findOneByUsername(username: IUser["username"]) {
+    return this._dbContext.user.findOne({ username });
+  }
+  async findOneByPhoneNumber(phoneNumber: IUser["phoneNumber"]) {
+    return this._dbContext.user.findOne({ phoneNumber });
+  }
+  async create(entity: Partial<IUser>) {
+    return this._dbContext.user.create(entity);
   }
 }
