@@ -73,9 +73,9 @@ Navigate to `http://localhost:5000`
 
 - API Document endpoints
 
-http://localhost:5000/api/v1/users
+http://localhost:5000/api/v1/user
 
-http://localhost:5000/api/v1/arts
+http://localhost:5000/api/v1/art
 
 ## Testing
 
