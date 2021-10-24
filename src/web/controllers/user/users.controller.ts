@@ -49,4 +49,9 @@ export class UsersController {
     const response = BaseHttpResponse.success(users);
     res.json(response);
   }
+
+  @httpGet("/currentUser", CurrentUserMiddleware)
+  async currentUser(req: any, res: Response) {
+    res.json(req.currentUser);
+  }
 }
