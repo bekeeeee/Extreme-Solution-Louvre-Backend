@@ -1,13 +1,13 @@
-import mongoose from 'mongoose'
+import mongoose from "mongoose";
 
 export interface IArt {
-  id: string
-  name: string
-  artist: string
-  description: string
-  image: string
+  id: string;
+  name: string;
+  artist: string;
+  description: string;
+  image: string;
 
-  createdAt: Date
+  createdAt: Date;
 }
 
 export const artsModel = new mongoose.Schema({
@@ -32,6 +32,7 @@ export const artsModel = new mongoose.Schema({
     required: true,
     default: Date.now,
   },
-})
-
-export type Art = typeof artsModel
+});
+const ArtImported = mongoose.model<IArt>("Art", artsModel);
+export {ArtImported}
+export type Art = typeof artsModel;

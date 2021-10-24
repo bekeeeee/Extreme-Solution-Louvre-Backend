@@ -54,6 +54,7 @@ userSchema.statics.correctPassword = async function (
 };
 userSchema.pre("save", async function (next) {
   // Only run this function if password was actually modified
+  console.log("pre save");
   if (!this.isModified("password")) return next();
 
   // Hash the password with cost of 12
