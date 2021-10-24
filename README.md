@@ -41,6 +41,24 @@ git clone  https://github.com/bekeeeee/Extreme-Solution-Louvre-Backend
 npm install
 ```
 
+- Import all arts and users to DB
+
+```
+npm run import:data
+Now you can login as an admin by
+{
+    username: "Ahmed",
+    password: 12345
+
+}
+or by a user
+{
+    username: "Mohamed",
+    password: 12345
+
+}
+```
+
 - Build and run the project
 
 ```
