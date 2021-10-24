@@ -1,11 +1,9 @@
-import { Jwt, SigninDto } from "@logic/dto/users";
-import { CreateUserDto } from "@logic/dto/users/create-user.dto";
-import { UsersService } from "@logic/services/users.service";
-import { BaseHttpResponse } from "@web/lib/base-http-response";
-import { AuthorizedToAdmin } from "@web/middlewares/Authorized-to-admin";
-import { CurrentUserMiddleware } from "@web/middlewares/current-user.middleware";
-import { ValidateRequestMiddleware } from "@web/middlewares/validate-request.middleware";
-
+import { CreateUserDto, Jwt, SigninDto } from "../../../logic/dto/users";
+import { UsersService } from "../../../logic/services/users.service";
+import { BaseHttpResponse } from "../../lib/base-http-response";
+import { AuthorizedToAdmin } from "../../middlewares/Authorized-to-admin";
+import { CurrentUserMiddleware } from "../../middlewares/current-user.middleware";
+import { ValidateRequestMiddleware } from "../../middlewares/validate-request.middleware";
 import { Request, Response } from "express";
 import { controller, httpGet, httpPost } from "inversify-express-utils";
 

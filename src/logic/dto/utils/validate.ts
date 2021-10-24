@@ -1,4 +1,4 @@
-import { ValidationException } from "@logic/exceptions";
+import { ValidationException } from "../../exceptions";
 
 export class Validate {
   static validateEmail(email: string): void {

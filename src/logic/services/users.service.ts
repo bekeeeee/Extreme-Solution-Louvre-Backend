@@ -1,14 +1,13 @@
-import { UsersRepository } from "@data/user/users.repository";
-import {
-  CreateUserDto,
-  GetOneUserByEmailDto,
-  GetOneUserByPhoneNumberDto,
-  GetOneUserByUsernameDto,
-  SigninDto,
-  UserDto,
-} from "@logic/dto/users";
-import { BadRequestError } from "@logic/exceptions";
 import { injectable } from "inversify";
+
+import { UsersRepository } from "../../data/user/users.repository";
+import {
+  GetOneUserByEmailDto,
+  GetOneUserByUsernameDto,
+  GetOneUserByPhoneNumberDto,
+} from "../dto/users";
+import { BadRequestError } from "../exceptions";
+import { SigninDto, UserDto, CreateUserDto } from "../../logic/dto/users";
 
 @injectable()
 export class UsersService {

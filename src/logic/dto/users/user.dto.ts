@@ -1,4 +1,4 @@
-import { IUser } from "@data/user/user.model";
+import { IUser } from "../../../data/user/user.model";
 
 export class UserDto {
   constructor(

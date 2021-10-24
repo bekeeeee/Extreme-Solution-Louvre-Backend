@@ -1,5 +1,5 @@
 import { injectable } from "inversify";
-import { DBContext } from "@data/db.context";
+import { DBContext } from "../db.context";
 import { IUser } from "./user.model";
 
 @injectable()

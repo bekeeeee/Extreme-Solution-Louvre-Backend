@@ -5,25 +5,26 @@ import cookieSession from "cookie-session";
 
 import { InversifyExpressServer } from "inversify-express-utils";
 
-import { DBContext } from "@data/db.context";
+import { Container } from "inversify";
+
+import "./controllers/user/users.controller";
+import "./controllers/art/arts.controller";
+
+import { BaseHttpResponse } from "./lib/base-http-response";
+
+import { NotAuthorized } from "./exceptions/Not-authorized";
+import { NotAuthenticated } from "./exceptions/Not-authenticated";
 import {
   Application,
   IAbstractApplicationOptions,
   MorganMode,
-} from "@web/lib/abstract-application";
-import { Container } from "inversify";
-
-import "@web/controllers/user/users.controller";
-import "@web/controllers/art/arts.controller";
-
-import { UsersService } from "@logic/services/users.service";
-import { BaseHttpResponse } from "./lib/base-http-response";
-import { BadRequestError, ValidationException } from "@logic/exceptions";
-import { UsersRepository } from "@data/user/users.repository";
-import { ArtsRepository } from "@data/art/arts.repository";
-import { ArtsService } from "@logic/services/arts.service";
-import { NotAuthorized } from "./exceptions/Not-authorized";
-import { NotAuthenticated } from "./exceptions/Not-authenticated";
+} from "./lib/abstract-application";
+import { DBContext } from "../data/db.context";
+import { UsersRepository } from "../data/user/users.repository";
+import { UsersService } from "../logic/services/users.service";
+import { ArtsRepository } from "../data/art/arts.repository";
+import { ArtsService } from "../logic/services/arts.service";
+import { BadRequestError, ValidationException } from "../logic/exceptions";
 
 export class App extends Application {
   constructor() {

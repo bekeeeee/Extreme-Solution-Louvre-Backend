@@ -1,11 +1,12 @@
+import { CreateArtDto, GetOneArtDto, UpdateArtDto } from "../../../logic/dto/arts";
+import { ArtsService } from "../../../logic/services/arts.service";
+import { BaseHttpResponse } from "../../lib/base-http-response";
+import { AuthorizedToAdmin } from "../../middlewares/Authorized-to-admin";
+import { CurrentUserMiddleware } from "../../middlewares/current-user.middleware";
+import { ValidateRequestMiddleware } from "../../middlewares/validate-request.middleware";
 import { Request, Response } from "express";
 import { controller, httpDelete, httpGet, httpPatch, httpPost } from "inversify-express-utils";
-import { ArtsService } from "@logic/services/arts.service";
-import { BaseHttpResponse } from "@web/lib/base-http-response";
-import { CurrentUserMiddleware } from "@web/middlewares/current-user.middleware";
-import { AuthorizedToAdmin } from "@web/middlewares/Authorized-to-admin";
-import { ValidateRequestMiddleware } from "@web/middlewares/validate-request.middleware";
-import { CreateArtDto, GetOneArtDto, UpdateArtDto } from "@logic/dto/arts";
+
 
 @controller("/api/v1/art")
 export class ArtsController {

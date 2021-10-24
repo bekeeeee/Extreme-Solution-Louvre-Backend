@@ -1,5 +1,5 @@
 import { injectable } from "inversify";
-import { DBContext } from "@data/db.context";
+import { DBContext } from "../db.context";
 import { IArt } from "./arts.model";
 
 @injectable()
@@ -14,6 +14,7 @@ export class ArtsRepository {
   }
 
   async updateOne(payload: Partial<IArt>) {
+
     const foundArt = await this._dbContext.art.findById(payload.id);
     if (!foundArt) {
       throw new Error("Art does not exist");
@@ -35,6 +36,6 @@ export class ArtsRepository {
   }
 
   async deleteOne(id: string) {
-    return this._dbContext.art.deleteOne({ _id: id });
+    return this._dbContext.art.deleteOne({ _id: id })
   }
 }

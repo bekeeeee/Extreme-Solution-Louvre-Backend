@@ -1,6 +1,6 @@
-import { ArtsRepository } from "@data/art/arts.repository";
-import { ArtDto, GetOneArtDto, UpdateArtDto } from "@logic/dto/arts";
-import { CreateArtDto } from "@logic/dto/arts/create-art.dto";
+
+import { ArtsRepository } from "../../data/art/arts.repository";
+import { ArtDto, CreateArtDto, GetOneArtDto, UpdateArtDto } from "../dto/arts";
 import { injectable } from "inversify";
 
 @injectable()

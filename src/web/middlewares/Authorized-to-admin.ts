@@ -1,5 +1,4 @@
-// import { NotAuthorized } from '@web/exceptions/Not-authorized'
-import { NotAuthorized } from '@web/exceptions/Not-authorized'
+import { NotAuthorized } from '../exceptions/Not-authorized'
 import { Request, Response, NextFunction } from 'express'
 
 export const AuthorizedToAdmin = async (

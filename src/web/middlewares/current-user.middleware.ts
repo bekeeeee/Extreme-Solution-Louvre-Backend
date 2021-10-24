@@ -1,11 +1,11 @@
-import { Jwt } from '@logic/dto/users'
-import { NotAuthenticated } from '@web/exceptions/Not-authenticated'
-import { Request, Response, NextFunction } from 'express'
+import { Jwt } from "../../logic/dto/users";
+import { NotAuthenticated } from "../exceptions/Not-authenticated";
+import { Request, Response, NextFunction } from "express";
 
 declare global {
   namespace Express {
     interface Request {
-      currentUser?: Jwt
+      currentUser?: Jwt;
     }
   }
 }
@@ -15,10 +15,10 @@ export const CurrentUserMiddleware = async (
   next: NextFunction
 ) => {
   if (!req.session?.jwt) {
-    next(new NotAuthenticated())
+    next(new NotAuthenticated());
   } else {
-    const payload = await Jwt.verifyToken(req.session?.jwt)
-    req.currentUser! = payload
-    next()
+    const payload = await Jwt.verifyToken(req.session?.jwt);
+    req.currentUser! = payload;
+    next();
   }
-}
+};

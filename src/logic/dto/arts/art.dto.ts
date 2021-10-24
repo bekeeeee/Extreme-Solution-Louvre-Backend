@@ -1,4 +1,4 @@
-import { IArt } from "@data/art/arts.model"
+import { IArt } from "../../../data/art/arts.model";
 
 export class ArtDto {
   constructor(
@@ -19,10 +19,10 @@ export class ArtDto {
       entity.image,
       entity.description,
       entity.createdAt
-    )
+    );
   }
 
   static fromMany(arts: IArt[]) {
-    return arts.map((art) => ArtDto.from(art))
+    return arts.map((art) => ArtDto.from(art));
   }
 }

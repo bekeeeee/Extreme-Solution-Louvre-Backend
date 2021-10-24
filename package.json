@@ -4,7 +4,11 @@
   "main": "bootstrap.ts",
   "author": "Mohamed Ragab",
   "scripts": {
-    "dev": "ts-node-dev --respawn --transpile-only --no-notify -r tsconfig-paths/register src/bootstrap.ts"
+    "dev": "ts-node-dev --respawn --transpile-only --no-notify -r tsconfig-paths/register src/bootstrap.ts",
+    "test": "NODE_ENV=test jest --collect-coverage",
+    "start": "node build/bootstrap.js",
+    "build": "tsc",
+    "postinstall": "npm run build"
   },
   "license": "MIT",
   "devDependencies": {
