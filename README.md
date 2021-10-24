@@ -45,6 +45,10 @@ npm install
 
 ```
 npm run import:data
+```
+
+```
+
 Now you can login as an admin by
 {
     username: "Ahmed",
