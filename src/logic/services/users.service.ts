@@ -7,7 +7,7 @@ import {
   GetOneUserByPhoneNumberDto,
 } from "../dto/users";
 import { BadRequestError } from "../exceptions";
-import { SigninDto, UserDto, CreateUserDto } from "../../logic/dto/users";
+import { SigninDto, UserDto, CreateUserDto } from "../dto/users";
 
 @injectable()
 export class UsersService {
