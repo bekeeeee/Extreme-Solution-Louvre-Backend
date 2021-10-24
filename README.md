@@ -73,9 +73,27 @@ Navigate to `http://localhost:5000`
 
 - API Document endpoints
 
-http://localhost:5000/api/v1/users
+http://localhost:5000/api/v1/user
 
-http://localhost:5000/api/v1/arts
+post `http://localhost:5000/api/v1/user` to signup
+
+post `http://localhost:5000/api/v1/user/login` to login
+
+get `http://localhost:5000/api/v1/user` to get all users
+
+get `http://localhost:5000/api/v1/user/currentUser` to get currentUser
+
+get `http://localhost:5000/api/v1/user/signout` to signout
+
+http://localhost:5000/api/v1/art
+
+post `http://localhost:5000/api/v1/art` to create an art
+
+get `http://localhost:5000/api/v1/art` to get all arts
+
+patch `http://localhost:5000/api/v1/art/:id` to edit an art
+
+delete `http://localhost:5000/api/v1/art/:id` to delete an art
 
 ## Testing
 

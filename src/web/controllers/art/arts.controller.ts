@@ -26,14 +26,14 @@ export class ArtsController {
     AuthorizedToAdmin,
     ValidateRequestMiddleware.with(CreateArtDto)
   )
-  async store(req: Request, res: Response) {
+  async createArt(req: Request, res: Response) {
     const art = await this._service.create(req.body);
     const response = BaseHttpResponse.success(art, 201);
     res.status(response.statusCode).json(response);
   }
 
   @httpGet("/", CurrentUserMiddleware)
-  async index(req: Request, res: Response) {
+  async getAllArts(req: Request, res: Response) {
     const arts = await this._service.all();
 
     const response = BaseHttpResponse.success(arts);
@@ -46,7 +46,7 @@ export class ArtsController {
     AuthorizedToAdmin,
     ValidateRequestMiddleware.withParams(UpdateArtDto)
   )
-  async edit(req: Request, res: Response) {
+  async editArt(req: Request, res: Response) {
     const art = await this._service.updateOne(req.body);
 
     const response = BaseHttpResponse.success(art, 200);
@@ -60,7 +60,7 @@ export class ArtsController {
     AuthorizedToAdmin,
     ValidateRequestMiddleware.withParams(GetOneArtDto)
   )
-  async destroy(req: Request, res: Response) {
+  async deleteArt(req: Request, res: Response) {
     await this._service.deleteOne(req.body);
 
     const response = BaseHttpResponse.success({}, 200);
