@@ -55,38 +55,28 @@ export class App extends Application {
     this.server.setErrorConfig((app: any) => {
       app.use((err: any, req: Request, res: Response, next: NextFunction) => {
         if (err instanceof ValidationException) {
-          const response = BaseHttpResponse.failed(err.message, 422)
-          return res.status(response.statusCode).json(response)
-        }
-
-        if (err instanceof CouldNotFindArtException) {
-          const response = BaseHttpResponse.failed(err.message, 404)
-          return res.status(response.statusCode).json(response)
+          const response = BaseHttpResponse.failed(err.message, 422);
+          return res.status(response.statusCode).json(response);
         }
 
         if (err instanceof NotAuthenticated) {
-          const response = BaseHttpResponse.failed(err.message, 401)
-          return res.status(response.statusCode).json(response)
+          const response = BaseHttpResponse.failed(err.message, 401);
+          return res.status(response.statusCode).json(response);
         }
 
         if (err instanceof NotAuthorized) {
-          const response = BaseHttpResponse.failed(err.message, 401)
-          return res.status(response.statusCode).json(response)
+          const response = BaseHttpResponse.failed(err.message, 401);
+          return res.status(response.statusCode).json(response);
         }
 
         if (err instanceof BadRequestError) {
-          const response = BaseHttpResponse.failed(err.message, 400)
-          return res.status(response.statusCode).json(response)
-        }
-
-        if (err instanceof CouldNotFindUserException) {
-          const response = BaseHttpResponse.failed(err.message, 404)
-          return res.status(response.statusCode).json(response)
+          const response = BaseHttpResponse.failed(err.message, 400);
+          return res.status(response.statusCode).json(response);
         }
 
         if (err instanceof Error) {
-          const response = BaseHttpResponse.failed(err.message, 500)
-          return res.status(response.statusCode).json(response)
+          const response = BaseHttpResponse.failed(err.message, 500);
+          return res.status(response.statusCode).json(response);
         }
         next();
       });
