@@ -93,6 +93,38 @@ describe("Art Controller", () => {
     done();
   });
 
+  // update an art __tests__
+
+  it("Not authenticated, update an artist", async (done) => {
+    const res = await request.patch("/api/v1/arts/344545323445454542");
+    expect(res.status).toBe(401);
+    done();
+  });
+
+  it("Not authorized, update an art by guest user", async (done) => {
+    let res = await request.post("/api/v1/users/login").send({
+      username: "user1",
+      password: "12345",
+    });
+    expect(res.status).toBe(201);
+
+    res = await request.patch("/api/v1/arts/344545323445454542");
+    expect(res.status).toBe(401);
+    done();
+  });
+
+  it("update an art by admin user", async (done) => {
+    let res = await request.post("/api/v1/users/login").send({
+      username: "admin",
+      password: "12345",
+    });
+    expect(res.status).toBe(201);
+
+    res = await request.patch("/api/v1/arts/344545323445454542");
+    expect(res.status).toBe(201);
+    done();
+  });
+
   afterEach(async (done) => {
     // await artsModel.deleteMany()
     done();

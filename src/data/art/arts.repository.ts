@@ -12,4 +12,26 @@ export class ArtsRepository {
   async create(entity: Partial<IArt>) {
     return this._dbContext.art.create(entity);
   }
+
+  async updateOne(payload: Partial<IArt>) {
+
+    const foundArt = await this._dbContext.art.findById(payload.id);
+    if (!foundArt) {
+      throw new Error("Art does not exist");
+    }
+
+    if (payload.image) {
+      foundArt.image = payload.image;
+    }
+    if (payload.description) {
+      foundArt.description = payload.description;
+    }
+
+    if (payload.artist) {
+      foundArt.artist = payload.artist;
+    }
+
+    foundArt.save();
+    return foundArt;
+  }
 }

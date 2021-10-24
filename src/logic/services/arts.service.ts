@@ -1,5 +1,5 @@
 import { ArtsRepository } from "@data/art/arts.repository";
-import { ArtDto } from "@logic/dto/arts";
+import { ArtDto, UpdateArtDto } from "@logic/dto/arts";
 import { CreateArtDto } from "@logic/dto/arts/create-art.dto";
 import { injectable } from "inversify";
 
@@ -15,5 +15,9 @@ export class ArtsService {
   async all() {
     const subscribers = await this._artsRepo.all();
     return ArtDto.fromMany(subscribers);
+  }
+
+  async updateOne(updateArtDto: UpdateArtDto) {
+    return this._artsRepo.updateOne(updateArtDto)
   }
 }
