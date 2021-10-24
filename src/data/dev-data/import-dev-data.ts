@@ -14,7 +14,7 @@ db.connect();
 const importData = async () => {
   try {
     await ArtImported.insertMany(arts);
-    await User.insertMany(users);
+    for (let i = 0; i < users.length; i++) await User.create(users[i]);
 
     console.log("Data successfully loaded!");
   } catch (err) {
