@@ -52,6 +52,16 @@ export class UsersController {
 
   @httpGet("/currentUser", CurrentUserMiddleware)
   async currentUser(req: any, res: Response) {
-    res.json(req.currentUser);
+    const response = BaseHttpResponse.success(req.currentUser);
+
+    res.json(response);
+  }
+
+  @httpGet("/signout", CurrentUserMiddleware)
+  async signout(req: any, res: Response) {
+    req.session = null;
+
+    const response = BaseHttpResponse.success({});
+    res.json(response);
   }
 }
