@@ -14,7 +14,6 @@ export class ArtsRepository {
   }
 
   async updateOne(payload: Partial<IArt>) {
-
     const foundArt = await this._dbContext.art.findById(payload.id);
     if (!foundArt) {
       throw new Error("Art does not exist");
@@ -33,5 +32,9 @@ export class ArtsRepository {
 
     foundArt.save();
     return foundArt;
+  }
+
+  async deleteOne(id: string) {
+    return this._dbContext.art.deleteOne({ _id: id });
   }
 }

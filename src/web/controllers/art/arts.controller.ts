@@ -1,11 +1,11 @@
 import { Request, Response } from "express";
-import { controller, httpGet, httpPatch, httpPost } from "inversify-express-utils";
+import { controller, httpDelete, httpGet, httpPatch, httpPost } from "inversify-express-utils";
 import { ArtsService } from "@logic/services/arts.service";
 import { BaseHttpResponse } from "@web/lib/base-http-response";
 import { CurrentUserMiddleware } from "@web/middlewares/current-user.middleware";
 import { AuthorizedToAdmin } from "@web/middlewares/Authorized-to-admin";
 import { ValidateRequestMiddleware } from "@web/middlewares/validate-request.middleware";
-import { CreateArtDto, UpdateArtDto } from "@logic/dto/arts";
+import { CreateArtDto, GetOneArtDto, UpdateArtDto } from "@logic/dto/arts";
 
 @controller("/api/v1/art")
 export class ArtsController {
@@ -40,6 +40,20 @@ export class ArtsController {
     const art = await this._service.updateOne(req.body)
 
     const response = BaseHttpResponse.success(art, 200)
+
+    res.status(response.statusCode).json(response)
+  }
+
+  @httpDelete(
+    '/:id',
+    CurrentUserMiddleware,
+    AuthorizedToAdmin,
+    ValidateRequestMiddleware.withParams(GetOneArtDto)
+  )
+  async destroy(req: Request, res: Response) {
+    await this._service.deleteOne(req.body)
+
+    const response = BaseHttpResponse.success({}, 200)
 
     res.status(response.statusCode).json(response)
   }

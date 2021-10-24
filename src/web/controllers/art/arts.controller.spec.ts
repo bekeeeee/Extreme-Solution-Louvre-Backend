@@ -125,6 +125,38 @@ describe("Art Controller", () => {
     done();
   });
 
+  // delete an art __tests__
+
+  it("Not authenticated, delete an artist", async (done) => {
+    const res = await request.delete("/api/v1/arts/344545323445454542");
+    expect(res.status).toBe(401);
+    done();
+  });
+
+  it("Not authorized, delete an art by guest user", async (done) => {
+    let res = await request.post("/api/v1/users/login").send({
+      username: "user1",
+      password: "12345",
+    });
+    expect(res.status).toBe(201);
+
+    res = await request.delete("/api/v1/arts/344545323445454542");
+    expect(res.status).toBe(401);
+    done();
+  });
+
+  it("delete an art by admin user", async (done) => {
+    let res = await request.post("/api/v1/users/login").send({
+      username: "admin",
+      password: "12345",
+    });
+    expect(res.status).toBe(201);
+
+    res = await request.delete("/api/v1/arts/344545323445454542");
+    expect(res.status).toBe(201);
+    done();
+  });
+
   afterEach(async (done) => {
     // await artsModel.deleteMany()
     done();
