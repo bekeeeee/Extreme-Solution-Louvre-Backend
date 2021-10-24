@@ -9,6 +9,7 @@ import { Container } from "inversify";
 
 import "./controllers/user/users.controller";
 import "./controllers/art/arts.controller";
+import "./controllers/hello.controller";
 
 import { BaseHttpResponse } from "./lib/base-http-response";
 
