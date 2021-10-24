@@ -3,7 +3,8 @@ import 'dotenv/config'
 
 import mongoose from 'mongoose'
 
-import { IUser, UserModel, userSchema } from '@data/user.model'
+import { IUser, UserModel, userSchema } from '@data/user/user.model'
+import { artsModel, IArt } from './art/arts.model'
 
 @injectable()
 export class DBContext {
@@ -24,5 +25,9 @@ export class DBContext {
 
   get user() {
     return this._db.model<IUser, UserModel>('User', userSchema)
+  }
+
+  get art() {
+    return this._db.model<IArt>('Art', artsModel)
   }
 }

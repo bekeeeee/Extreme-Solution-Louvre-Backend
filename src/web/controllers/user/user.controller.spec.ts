@@ -1,6 +1,6 @@
 import "reflect-metadata";
 
-import { App } from "../application";
+import { App } from "../../application";
 import "dotenv/config";
 
 import supertest from "supertest";

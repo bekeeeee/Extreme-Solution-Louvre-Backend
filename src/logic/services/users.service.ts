@@ -1,4 +1,4 @@
-import { UsersRepository } from "@data/users.repository";
+import { UsersRepository } from "@data/user/users.repository";
 import {
   CreateUserDto,
   GetOneUserByEmailDto,

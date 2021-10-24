@@ -13,11 +13,17 @@ import {
 } from "@web/lib/abstract-application";
 import { Container } from "inversify";
 
-import "@web/controllers/users.controller";
-import { UsersRepository } from "@data/users.repository";
+import "@web/controllers/user/users.controller";
+import "@web/controllers/art/arts.controller";
+
 import { UsersService } from "@logic/services/users.service";
 import { BaseHttpResponse } from "./lib/base-http-response";
 import { BadRequestError, ValidationException } from "@logic/exceptions";
+import { UsersRepository } from "@data/user/users.repository";
+import { ArtsRepository } from "@data/art/arts.repository";
+import { ArtsService } from "@logic/services/arts.service";
+import { NotAuthorized } from "./exceptions/Not-authorized";
+import { NotAuthenticated } from "./exceptions/Not-authenticated";
 
 export class App extends Application {
   constructor() {
@@ -35,6 +41,8 @@ export class App extends Application {
     container.bind(DBContext).toSelf();
     container.bind(UsersRepository).toSelf();
     container.bind(UsersService).toSelf();
+    container.bind(ArtsRepository).toSelf();
+    container.bind(ArtsService).toSelf();
   }
 
   async setup(options: IAbstractApplicationOptions) {
@@ -52,6 +60,15 @@ export class App extends Application {
         }
 
         if (err instanceof BadRequestError) {
+          const response = BaseHttpResponse.failed(err.message, 400);
+          return res.status(response.statusCode).json(response);
+        }
+
+        if (err instanceof NotAuthorized) {
+          const response = BaseHttpResponse.failed(err.message, 400);
+          return res.status(response.statusCode).json(response);
+        }
+        if (err instanceof NotAuthenticated) {
           const response = BaseHttpResponse.failed(err.message, 400);
           return res.status(response.statusCode).json(response);
         }
