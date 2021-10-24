@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import { controller, httpPost } from "inversify-express-utils";
+import { controller, httpGet, httpPost } from "inversify-express-utils";
 import { ArtsService } from "@logic/services/arts.service";
 import { BaseHttpResponse } from "@web/lib/base-http-response";
 import { CurrentUserMiddleware } from "@web/middlewares/current-user.middleware";
@@ -23,5 +23,13 @@ export class ArtsController {
 
     const response = BaseHttpResponse.success(art, 201);
     res.status(response.statusCode).json(response);
+  }
+
+  @httpGet('/', CurrentUserMiddleware)
+  async index(req: Request, res: Response) {
+    const arts = await this._service.all()
+
+    const response = BaseHttpResponse.success(arts)
+    res.json(response)
   }
 }
